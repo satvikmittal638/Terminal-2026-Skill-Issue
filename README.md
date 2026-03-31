@@ -1,60 +1,75 @@
-# C1GamesStarterKit
+# Terminal C1Games Bot Strategy
 
-Welcome to the C1 Terminal Starter Kit! The repository contains a collection of scripts and
-language-specific starter algos, to help you start your journey to develop the ultimate algo.
+Welcome to the central repository for our algorithmic bot for the Citadel Terminal competition.
 
-For more details about competitions and the game itself please check out our
-[main site](https://terminal.c1games.com/rules).
+Our core philosophy revolves around two principles: **Agility and Computational Efficiency.** We sacrifice complex pathfinding abstractions (like A*) in favor of hard-coded situational reactions and O(N) threat calculations.
 
-## Manual Play
+---
 
-We recommend you familiarize yourself with the game and its strategic elements, by playing manually,
-before you start your algo. Check out [the playground](https://terminal.c1games.com/playground).
+## 🛡️ Defensive Strategy
 
-## Algo Development
+Our defense avoids resource-inefficient units. **We never purchase Walls, and we never upgrade Turrets.** Our defense relies exclusively on a sturdy baseline of upgraded Supports and an expanding, reactive network of Turrets.
 
-To test your algo locally, you should use the test_algo_[OS] scripts in the scripts folder. Details on its use is documented in the README.md file in the scripts folder.
+### 1. Support Core
 
-For programming documentation of language specific algos, see each language specific README.
-For documentation of the game-config or the json format the engine uses to communicate the current game state, see json-docs.html
+- **Initial Placement:** We place exactly four Supports directly in the center backline at `(12, 11), (13, 11), (14, 11), (15, 11)`.
+- **Upgrades:** We immediately seek to upgrade three of these supports, saving the final upgrade for available structure points (SP) in later rounds. The game engine resolves multiple upgrade requests efficiently based on available SP.
 
-For advanced users you can install java and run the game engine locally. Java 10 or above is required: [Java Development Kit 10 or above](http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html).
+### 2. Turret Phasing
 
-All code provided in the starterkit is meant to be used as a starting point, and can be overwritten completely by more advanced players to improve performance or provide additional utility.
+Our turrets are deployed in a phased approach.
 
-## Windows Setup
+- **Base Layer:** First, we establish a central block at `(12, 12), (11, 11), (15, 12), (16, 11)` to protect the core Supports.
+- **Reactive Expansion:** To counter active threats, our bot profiles JSON turn strings to determine where the enemy struck last. We immediately prioritize pouring SP into the side taking heavy fire (Left or Right) through three strict build phases:
+    1. **Outer Guard:** Securing the far edges (e.g., `(0, 13), (2, 13)` for Left).
+    2. **Secondary Line:** Reinforcing the inner channels directly below the outer guards.
+    3. **Center Fill:** Plugging the gaps in the centerline `(Y=13)` to seal the defense.
+- If we have remaining SP after defending the active threat side, we continue building the identical mirrored phase on the opposite side.
 
-If you are running Windows, you will need Windows PowerShell installed. This comes pre-installed on Windows 10.
-Some windows users might need to run the following PowerShell commands in administrator mode (right-click the
-PowerShell icon, and click "run as administrator"):
+---
 
-    `Set-ExecutionPolicy Unrestricted`
-    
-If this doesn't work try this:
+## ⚔️ Offensive Strategy
 
-    `Set-ExecutionPolicy Unrestricted CurrentUser`
-    
-If that still doesn't work, try these below:
+Our offense is lean, alternating, and relies solely on **Scouts**. We explicitly ignore Demolishers and Interceptors.
 
-    `Set-ExecutionPolicy Bypass`
-    `Set-ExecutionPolicy RemoteSigned`
-    
-And don't forget to run the PowerShell as admin.
+### 1. The "Chunk of 5"
 
-## Uploading Algos
+When we possess 5 or more Mobile Points (MP), we launch a strike consisting of exactly **5 Scouts** at once. Grouping attackers maximizes the chance of breaking through layered defenses before support shields deplete.
 
-Simply select the folder of your algo when prompted on the [Terminal](https://terminal.c1games.com) website. Make sure to select the specific language folder such as "python-algo" do not select the entire starterkit itself.
+### 2. Alternating Assault Vectors
 
-## Troubleshooting
+To bypass dynamic enemy scripts designed to place defenses on the side being attacked, we **never strike the same side twice in a row**. Our assault alternates systematically between the Left and Right quadrants.
 
-For detailed troubleshooting help related to both website problems and local development check out [the troubleshooting section](https://terminal.c1games.com/rules#Troubleshooting).
+### 3. Spawn Evaluation (Y <= 10)
 
-#### Python Requirements
+When preparing to launch our Scouts:
 
-Python algos require Python 3 to run. If you are running Unix (Mac OS or Linux), the command `python3` must run on
-Bash or Terminal. If you are running Windows, the command `py -3` must run on PowerShell.
+1. We filter possible launch coordinates ensuring `Y <= 10` (from `[12,1]` down the physical diagonal edges).
+2. We skip any coordinates currently blocked by our own stationary defenses.
+3. We run a rapid calculation checking the target path to find the spawn location facing the **least guaranteed Turret damage**.
+4. **Compute Shortcut:** If our loop identifies a path with zero incoming structural damage, we adopt it immediately and bypass further calculations.
 
-## Running Algos
+---
 
-To run your algo locally or on our servers, or to enroll your algo in a competition, please see the [documentation
-for the Terminal command line interface in the scripts directory](https://github.com/correlation-one/AIGamesStarterKit/tree/master/scripts)
+## ⚡ Performance Optimization
+
+By tracking incoming damage and breaches directly within the `on_action_frame` JSON payload, our algorithm dynamically deduces the enemy's attack side entirely through numerical array slicing, circumventing heavy simulation loops entirely.
+
+The combination of preemptive coordinate mapping, linear threat assessments, and engine-native tracking guarantees our logic submits instantaneous moves on every single turn.
+
+---
+
+## 🏆 Performance & Team
+
+### Team: Skill_Issue
+
+We successfully created the **highest ELO bot** in the competition, ultimately securing **3rd Place** overall!
+
+![Leaderboard](leaderboard.png)
+
+### Team Members
+
+1. **Satvik Mittal**
+2. **Om Gore** (Captain-Flowinity)
+3. **Chatanya Maheshwari**
+
