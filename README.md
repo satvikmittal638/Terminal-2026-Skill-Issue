@@ -65,11 +65,25 @@ The combination of preemptive coordinate mapping, linear threat assessments, and
 
 We successfully created the **highest ELO bot** in the competition, ultimately securing **3rd Place** overall!
 
-![Leaderboard](leaderboard.png)
+| Place | Team | Algorithm Name | Language | Elo Rating |
+| :---: | :--- | :--- | :---: | :---: |
+| 🥇 1 | HUNTR/X | TAKEDOWN_V4_DONTDELETE | PYTHON | 2053 |
+| 🥈 2 | BBH | PYTHON-ALGO 2 | PYTHON | 1846 |
+| 🥉 **3** | **SKILL_ISSUE** | **FINAL3GEM** | **PYTHON** | **2357** 🏆 |
+| 4 | SEGMENTATION_FAULT | CHAOS | PYTHON | 2275 |
 
 ### Team Members
 
 1. **Satvik Mittal**
 2. **Om Gore** (Captain-Flowinity)
 3. **Chatanya Maheshwari**
+
+---
+
+## 📁 Repository Structure
+
+- **`final3gem/algo_strategy.py`**: The core executable Python bot holding all of our strategic algorithm routing and reactive defense logic.
+- **`strategy.txt` & `final3.txt`**: Our raw strategy scratchpads detailing the mathematical breakdown of our defensive layers and the "Chunks of 5" scout methodology.
+- **`rules.md`**: The official Citadel Terminal documentation outlining base-level unit stats, match mechanics, and engine details.
+- **`STARTERKIT_README.md`**: The preserved default setup guide from C1Games explaining how to test algorithms locally across different operating systems.
 
