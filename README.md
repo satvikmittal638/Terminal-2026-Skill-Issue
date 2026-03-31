@@ -83,7 +83,7 @@ We successfully created the **highest ELO bot** in the competition, ultimately s
 ## 📁 Repository Structure
 
 - **`final3gem/algo_strategy.py`**: The core executable Python bot holding all of our strategic algorithm routing and reactive defense logic.
-- **`strategy.txt` & `final3.txt`**: Our raw strategy scratchpads detailing the mathematical breakdown of our defensive layers and the "Chunks of 5" scout methodology.
+- **`strategy.txt`**: Our raw strategy scratchpad detailing the mathematical breakdown of our defensive layers and the "Chunks of 5" scout methodology.
 - **`rules.md`**: The official Citadel Terminal documentation outlining base-level unit stats, match mechanics, and engine details.
 - **`STARTERKIT_README.md`**: The preserved default setup guide from C1Games explaining how to test algorithms locally across different operating systems.
 
