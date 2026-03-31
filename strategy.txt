@@ -1,0 +1,28 @@
+STRATEGY:
+Our Total Computation should be less than 40ms. NOTE THIS!
+-> COMPUTATION TIME IS TIE-BREAKER SO HIGHLY OPTIMISE THE CODE AND DON'T DO UNNECESSARY CALCULATION.
+-> I WILL NEVER USE DEMOLISHER, INTERCEPTOR AND WALLS.
+-> I WILL NEVER UPGRADE TURRETS, ONLY SUPPORTS that too 
+
+1) Defence Structure:
+
+a) Supports: Initially place at (12-15, 11), upgrade any 3 of them.
+In the later round, upgrade the last one.
+
+b) Turrets: Initially placed at (12, 12), (11, 11), (15, 12), (16, 11)
+Once the support thing is done with this basic structure.
+PHASE LEFT: 1) (0,13), (2,13), (3,12)
+	    2) (4,13), (5,13), (4,12)
+	    3) In center around gaps 3-4 in chunk and fill gaps
+PHASE RIGHT: 1) (25,13), (27,13), (24,12)
+	     2)  (22,13), (23,13), (23, 12)
+		 3) In center around gaps 3-4 in chunk and fill gaps.
+Decide left/right by side on which previously opponent attacked and then the order i gave.
+IF STRUCTURE POINTS REMAIN USE THEM TO BUILD NEXT TURRETS OKAY. KEEP BUILDING IT.
+
+2) Mobile Structure: Place them such that their Y <= 10.
+-> ATTACK IN CHUNKS OF 5 SCOUTS ALTERNATELY FROM (12,1), (6,7) OR (15,1), (21, 7). i.e left and right. Not limited to this decide position where there is gauranted hit of 5 scouts.
+
+Choose the top or the bottom based on where the opponent has more gaps.
+-> We always attack in chunk of 5 Scouts.
+-> There are algorithms that place turrets on the side we attacked last, so we never attack on the same side in two consecutive turns, as told earlier.
