@@ -2,7 +2,9 @@
 
 Welcome to the central repository for our algorithmic bot for the Citadel Terminal competition.
 
-Our core philosophy revolves around two principles: **Agility and Computational Efficiency.** We sacrifice complex pathfinding abstractions (like A*) in favor of hard-coded situational reactions and O(N) threat calculations.
+Our core philosophy revolves around two principles: **Agility and Computational Efficiency.** We sacrifice complex pathfinding abstractions (like A*) in favor of hard-coded situational reactions and O(N) threat calculations. 
+
+By closely observing the replays, defensive scripts, and pathing strategies of the top-ranking teams on the leaderboard, we custom-engineered this bot as a direct mathematical counter to the competition's prevailing meta.
 
 ---
 
